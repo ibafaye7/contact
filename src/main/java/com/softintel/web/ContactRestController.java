@@ -58,8 +58,8 @@ public class ContactRestController {
 	}
 	
 	@PutMapping("/contacts/{id}")
-	public Contact update(@PathVariable Long id,@RequestBody Contact contact) {
-		contact.setId(id);
+	public Contact update(@PathVariable Long id,@RequestBody @Valid ContactDto contactDto) {
+		Contact contact = contactDto.mapToEntity.get();
 		return contactRepository.save(contact);
 	}
 }
